@@ -212,7 +212,7 @@ def _build_http_request(session, url, method, headers=None, encoding=None, param
         opts['params'] = params.query
 
     if params.data or params.files:
-        if encoding == 'application/json':
+        if encoding == 'application/json' or encoding.endswith('+json'):
             opts['json'] = params.data
         elif encoding == 'multipart/form-data':
             opts['data'] = params.data
