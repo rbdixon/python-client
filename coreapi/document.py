@@ -187,7 +187,7 @@ class Link(itypes.Object):
     """
     Links represent the actions that a client may perform.
     """
-    def __init__(self, url=None, action=None, encoding=None, transform=None, title=None, description=None, fields=None):
+    def __init__(self, url=None, action=None, encoding=None, transform=None, title=None, description=None, fields=None, traits=None):
         if (url is not None) and (not isinstance(url, string_types)):
             raise TypeError("Argument 'url' must be a string.")
         if (action is not None) and (not isinstance(action, string_types)):
@@ -208,6 +208,7 @@ class Link(itypes.Object):
         ]):
             raise TypeError("Argument 'fields' must be a list of strings or fields.")
 
+        self._traits = traits
         self._url = '' if (url is None) else url
         self._action = '' if (action is None) else action
         self._encoding = '' if (encoding is None) else encoding
@@ -246,6 +247,10 @@ class Link(itypes.Object):
     @property
     def fields(self):
         return self._fields
+
+    @property
+    def traits(self):
+        return self._traits
 
     def __eq__(self, other):
         return (
