@@ -72,8 +72,8 @@ class Document(itypes.Dict):
             raise TypeError("'media_type' must be a string.")
         if not isinstance(content, dict):
             raise TypeError("'content' must be a dict.")
-        if any([not isinstance(key, string_types) for key in content.keys()]):
-            raise TypeError('content keys must be strings.')
+        if any([not isinstance(key, (string_types, tuple)) for key in content.keys()]):
+            raise TypeError('content keys must be strings or tuple (method, route).')
 
         self._url = '' if (url is None) else url
         self._title = '' if (title is None) else title
@@ -140,8 +140,8 @@ class Object(itypes.Dict):
     """
     def __init__(self, *args, **kwargs):
         data = dict(*args, **kwargs)
-        if any([not isinstance(key, string_types) for key in data.keys()]):
-            raise TypeError('Object keys must be strings.')
+        if any([not isinstance(key, (string_types, tuple)) for key in data.keys()]):
+            raise TypeError('Object keys must be string or tuple (method, route).')
         self._data = {key: _to_immutable(value) for key, value in data.items()}
 
     def __iter__(self):

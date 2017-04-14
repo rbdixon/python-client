@@ -19,10 +19,10 @@ def _lookup_link(document, keys):
         msg = "'keys' must be a list of strings or ints."
         raise TypeError(msg)
     if any([
-        not isinstance(key, string_types) and not isinstance(key, int)
+        not isinstance(key, (string_types, tuple)) and not isinstance(key, int)
         for key in keys
     ]):
-        raise TypeError("'keys' must be a list of strings or ints.")
+        raise TypeError("'keys' must be a list of strings, tuple (action, route), or ints.")
 
     # Determine the link node being acted on, and its parent document.
     # 'node' is the link we're calling the action for.
