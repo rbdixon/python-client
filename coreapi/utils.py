@@ -254,7 +254,7 @@ def validate_query_param(value):
 
 
 def validate_body_param(value, encoding):
-    if encoding == 'application/json':
+    if encoding == 'application/json' or encoding.endswith('+json'):
         return _validate_json_data(value)
     elif encoding == 'multipart/form-data':
         return _validate_form_object(value, allow_files=True)

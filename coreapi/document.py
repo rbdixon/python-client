@@ -208,7 +208,7 @@ class Link(itypes.Object):
         ]):
             raise TypeError("Argument 'fields' must be a list of strings or fields.")
 
-        self._traits = traits
+        self._traits = '' if (traits is None) else traits
         self._url = '' if (url is None) else url
         self._action = '' if (action is None) else action
         self._encoding = '' if (encoding is None) else encoding
